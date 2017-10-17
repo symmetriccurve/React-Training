@@ -13,49 +13,16 @@ var webpackConfig = {
     },
     output: {
         path: staticsPath,
-        filename: '[name].bundle.js',
+        filename: 'bundle.js',
     },
     module: {
-        rules: [{
-            test: /\.html$/,
-            exclude: /node_modules/,
-            use: {
-                loader: 'file-loader',
-                query: {
-                    name: '[name].[ext]'
-                },
-            },
-        },
-            {
-                test: /\.css$/,
-                //exclude: /node_modules/,
-                use: [
-                    'style-loader',
-                    'css-loader'
-                ]
-            },
-            {
-                test: /\.(sass|scss)$/,
-                exclude: /node_modules/,
-                use: [
-                    'style-loader',
-                    'css-loader',
-                    'sass-loader',
-                ]
-            },
+        rules: [
             {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 use: [
                     'babel-loader'
                 ],
-            },
-            {
-                test: /\.png$/,
-                exclude: /node_modules/,
-                use: [
-                    'file-loader?name=images/[name].[ext]'
-                ]
             }
         ],
     },
@@ -66,20 +33,6 @@ var webpackConfig = {
         compress: false,
         inline: true,
         hot: true,
-        stats: {
-            assets: true,
-            children: false,
-            chunks: false,
-            hash: false,
-            modules: false,
-            publicPath: false,
-            timings: true,
-            version: false,
-            warnings: true,
-            colors: {
-                green: '\u001b[32m',
-            }
-        },
     },
     plugins: [
         new OpenBrowserPlugin({
