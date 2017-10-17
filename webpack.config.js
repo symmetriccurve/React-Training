@@ -1,6 +1,5 @@
 const webpack = require('webpack');
 const path = require('path');
-var OpenBrowserPlugin = require('open-browser-webpack-plugin');
 
 const sourcePath = path.join(__dirname, './client');
 const staticsPath = path.join(__dirname, './static');
@@ -35,9 +34,6 @@ var webpackConfig = {
         hot: true,
     },
     plugins: [
-        new OpenBrowserPlugin({
-            url: 'http://localhost:3000'
-        }),
         new webpack.HotModuleReplacementPlugin()
     ],
     resolve: {
