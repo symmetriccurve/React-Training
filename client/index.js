@@ -4,6 +4,8 @@ import React from 'react';
 import App from 'Components/App';
 
 ReactDOM.render(
-     <App />,
+  <div style={{height:'100vh',width:'100vw',backgroundColor:'#FCFCFC'}}>
+     <App />
+  </div>   ,
   document.getElementById('root')
 );
