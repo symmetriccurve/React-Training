@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 var data =  {
     title:'Title',
@@ -7,7 +7,7 @@ var data =  {
     description:'If you are reading this after the title, then I am a description'
 }
 
-class App extends Component {
+const App = React.createClass({
     render() {
         return (
             <div>
@@ -40,7 +40,7 @@ class App extends Component {
             </div>
         );
     }
-}
+})
 
 
 module.exports = App
