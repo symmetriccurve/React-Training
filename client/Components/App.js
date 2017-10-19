@@ -1,77 +1,38 @@
-import React, { Component } from 'react';
+import React,{ Component} from 'react';
+//importing from React Library 
+//
 
-var data =  {
-    title:'Title',
-    subtitle:'subTitle',
-    description:'If you are reading this after the title, then I am a description'
+var data = {
+    title : "Some Title",
+    price : "$100",
+    description: "Some Description"
 }
 
-var visitingCard =  {
-    name:'Vinay',
-    designation:'Senior UI Developer',
-    description:"I'm a Passionate Javascript Developer with Love for UI/UX"
-}
 
-var menuItem =  {
-    itemName:'Product A',
-    price:'$100',
-    description:"I'm a product worth of $10, all the UI around it make me feel !!!"
-}
+class App extends Component{  // This is ES6 Way to create a Class
+    //all the life cycle methods goes here
+    // All the React Components should/ Must return a View
 
-var contactCard =  {
-    name:'Abhinav',
-    phone:'123456',
-    designation:"Budding UI Developer"
-}
-
-var GreetingCard =  {
-    wish:'Happy New Year !',
-    year:'123456',
-    greetings:"May this Year Bring you more than what you Deserve"
-}
-
-var CreditCard =  {
-    cardNumber:'1122-4567',
-    exp:'10/20',
-    FNLN:"Sasidhar"
-}
-
-class App extends Component {
-    constructor(props){
-        super(props)
-            this.state = {
-                name:'adada'
-            }
-        }
-
-    componentWillMount(){
-    }
-
-    componentDidMount(){
-      this.setState({
-            name:'hellow'
-      })
-    }
-    render() {
-        return (
-            <div>
+    render(){ // One of th Life Cycle Method
+        return(
+             <div>
                 <div style={{display:'flex',padding:'20px',height:'200px',width:'500px',backgroundColor:'#44B6EC'}}>
                     <div style={{display:'flex',flex:1,flexDirection:'column'}}>
                         <div style={{display:'flex',height:'30%'}}>
                             <div style={{display:'flex',flex:3,height:'30%',alignItems:'center',justifyContent:'flex-start'}}>
                                 <span style={{color:'#434040',fontFamily: 'Verdana, Geneva, sans-serif',fontSize:'40px',fontWeight:'bold',color:'white'}}>
-                                   {this.state.name} 
+                                    {data.title}
                                 </span>
                             </div>
                            <div style={{display:'flex',flex:1,height:'30%',alignItems:'center',justifyContent:'flex-start'}}>
                                <span style={{color:'#434040',fontFamily: 'Verdana, Geneva, sans-serif',fontSize:'20px',color:'white'}}>
-                                     {data.subtitle} 
+                                    {data.price}
                                 </span>
                             </div>
                         </div>
                         <div style={{display:'flex',height:'40%',alignItems:'center',justifyContent:'flex-start', shadowColor: '#000000',shadowOffset: {width: 0,height: 3},shadowRadius: 1,shadowOpacity: 0.1}}>
                             <span style={{color:'#434040',fontFamily: 'Verdana, Geneva, sans-serif',fontSize:'20px',color:'white'}}>
-                                 {data.description} 
+                                 {data.description}
                             </span>
                         </div>
                         <div style={{display:'flex',backgroundColor:'white',height:'25%',alignItems:'center',justifyContent:'center', shadowColor: '#000000',shadowOffset: {width: 0,height: 3},shadowRadius: 1,shadowOpacity: 0.1}}>
@@ -82,9 +43,13 @@ class App extends Component {
                     </div>
                 </div>    
             </div>
-        );
+        )
     }
+
 }
-
-
 module.exports = App
+
+
+// const App = React.createClass ({ // This is ES5 way to create a simple React Component .
+//         //all the life cycle methods goes here
+// })

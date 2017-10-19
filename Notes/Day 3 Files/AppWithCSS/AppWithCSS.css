@@ -1,0 +1,78 @@
+.mainCont {
+    display: 'flex';
+    padding: '20px';
+    height: '200px';
+    width: '500px';
+    background-color: '#44B6EC'
+}
+
+.innerCont {
+    display: 'flex';
+    flex: 1;
+    flex-direction: 'column'
+}
+
+.topCont {
+    display: 'flex';
+    height: '30%'
+}
+
+.topLeftCont {
+    display: 'flex';
+    flex: 3;
+    height: '30%';
+    align-items: 'center';
+    justify-content: 'flex-start'
+}
+
+.topRighCont {
+    display: 'flex';
+    flex: 1;
+    height: '30%';
+    align-items: 'center';
+    justify-content: 'flex-start';
+}
+
+.bottomCont {
+    display: 'flex';
+    height: '40%';
+    align-items: 'center';
+    justify-content: 'flex-start';
+}
+
+.titleText {
+    color: '#434040';
+    font-family: 'Verdana; Geneva; sans-serif';
+    font-size: '40px';
+    font-weight: 'bold';
+    color: 'white';
+}
+
+subtitleText {
+    color: '#434040';
+    font-family: 'Verdana; Geneva; sans-serif';
+    font-size: '20px';
+    color: 'white'
+}
+
+descriptionText {
+    color: '#434040';
+    font-family: 'Verdana; Geneva; sans-serif';
+    font-size: '20px';
+    color: 'white';
+}
+
+.buttonCont {
+    display: 'flex';
+    background-color: 'white';
+    height: '25%';
+    align-items: 'center';
+    justify-content: 'center';
+}
+
+.buttonText {
+    color: '#434040';
+    font-family: 'Verdana; Geneva; sans-serif';
+    font-size: '20px';
+    font-weight: '800'
+}
