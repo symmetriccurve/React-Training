@@ -4,15 +4,23 @@ import React, { Component } from 'react'
 class ProductCard extends Component{
 
     shouldComponentUpdate(nextProps, nextState){
+        /* 
+            This is the First Life Cycle method that is used to optimize the Render method
+        */
         return false
     }
 
     componentWillUpdate(nextProps, nextState){
-        //  it Only Updates when shouldComponentUpdate return true
+        /* 
+            This is the First Life Cycle method that is used to optimize the Render method
+        */
     }
 
     componentDidUpdate(){
-        // Method Called after Update has Being Made Successfully
+        /* 
+            This is used to Update any DOM Elements which are other than React Components,
+            Cones to Drill Holes
+        */
     }
 
 
