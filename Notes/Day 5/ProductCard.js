@@ -2,6 +2,20 @@ import React, { Component } from 'react'
 
 
 class ProductCard extends Component{
+
+    shouldComponentUpdate(nextProps, nextState){
+        return false
+    }
+
+    componentWillUpdate(nextProps, nextState){
+        //  it Only Updates when shouldComponentUpdate return true
+    }
+
+    componentDidUpdate(){
+        // Method Called after Update has Being Made Successfully
+    }
+
+
     render(){
         return(
             <div style={s.a}>

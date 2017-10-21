@@ -2,6 +2,11 @@ import React, { Component } from 'react'
 import ProductCard from '../Components/ProductCard'
 
 class ProductContainer extends Component{
+    
+    componentWillReceiveProps(nextProps){
+        console.log('===>>>',this.props,nextProps)
+    }
+
     render(){
         return(
            <div style={{display:'flex',flex:1,paddingTop:'70px',alignItems:'center',justifyContent:'center',flexDirection:'column'}}> 
@@ -21,6 +26,7 @@ class ProductContainer extends Component{
         )
     }
 }
+
 
 ProductContainer.propTypes = {
     title:React.PropTypes.string.isRequired,
