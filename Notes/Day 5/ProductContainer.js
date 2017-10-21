@@ -8,7 +8,12 @@ class ProductContainer extends Component{
                 {
                     this.props.results.length ?
                     this.props.results.map((eachProduct)=>{
-                        return <ProductCard key={eachProduct.productName} title={eachProduct.productName} button={eachProduct.price} isAvailable={eachProduct.available} handleProductAdd={this.props.handleProductAdd}/>
+                        return <ProductCard 
+                            key={eachProduct.productName} 
+                            title={eachProduct.productName} 
+                            button={eachProduct.price} 
+                            isAvailable={eachProduct.available} 
+                            handleProductAdd={this.props.handleProductAdd}/>
                     }) :
                     <div> Loading.... </div> 
                 }
