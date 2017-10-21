@@ -1,43 +1,50 @@
 import React,{ Component} from 'react';
-//importing from React Library 
-//
 
+import ProductCard from './ProductCard'
 
 class App extends Component{
-
-    constructor(){ //1
+    constructor(){
         super()
         this.state = {
-            name:'Sesidhar'
+            results : []
         }
     }
 
-    componentWillMount(){ //2
-        this.setState({
-            name : "Vinay"
+    componentDidMount(){
+
+        var self = this
+        fetch('https://api.myjson.com/bins/apf1z')
+        .then(function(res){
+            return res.json()
         })
+        .then(function(jsonResponse){
+                console.log(jsonResponse)
+            self.setState({
+                results: jsonResponse
+            })
+
+        })
+        .catch(function(error){
+            console.log("That's a Error Abhinav",error)
+        })
+
     }
 
 
-    render(){  //3 //5
+
+    render(){
         return(
-            <div> 
-                <div> 
-                    {this.state.name} 
-                </div>
-            </div>   
+            <div>
+                {
+
+                    this.state.results.length ?
+                    this.state.results.map(function(eachProduct){
+                        return <ProductCard key={eachProduct.productName} title={eachProduct.productName} button={eachProduct.price} isAvailable={eachProduct.available}/>
+                    }) :
+                    <div> Loading.... </div> 
+                }
+            </div>
         )
     }
-
-    componentDidmount(){
-        
-    }
-
-
 }
 module.exports = App
-
-
-// const App = React.createClass ({ // This is ES5 way to create a simple React Component .
-//         //all the life cycle methods goes here
-// })
