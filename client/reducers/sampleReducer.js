@@ -1,13 +1,10 @@
 var defaulteState  = {
   results: [],
-  selectedItems: [],
-  offset: 25,
-  focus: false,
-  query: ''
+  cart : []
 }
 
-function dataReducer(state = defaulteState, action) {
+function sampleReducer(state = defaulteState, action) {
       return defaulteState;
 }
 
-module.exports = dataReducer
+module.exports = sampleReducer

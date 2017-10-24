@@ -73,17 +73,21 @@ class App extends Component{
     }
 }
 
-// function mapStateToProps(state) {
-//     return {
-//         state: state
-//     };
-// }
+function mapStateToProps(state) {
+    debugger
+    return {
+        uiState: state.uiState
+    };
+}
 
-// function mapDispatchToProps(dispatch) {
-//     //mapDispatchToProps is optional, but useful when passed to a stateless component without connecting to store
-//     return {
+function mapDispatchToProps(dispatch) {
+    //mapDispatchToProps is optional, but useful when passed to a stateless component without connecting to store
+    return {
 
-//     };
-// }
+    };
+}
 
-module.export = App
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(App);

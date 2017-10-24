@@ -25,17 +25,6 @@ class SearchBar extends Component{
     }
 }
 
-SearchBar.propTypes = {
-    title:React.PropTypes.string.isRequired,
-    button:React.PropTypes.string,
-    isAvailable: React.PropTypes.bool.isRequired
-}
-
-SearchBar.defaultProps = {
-    //title: "Title is Missing",
-    button: "ButtonText is missing" 
-}
-
 
 const s = {
     a:{display:'flex',alignItems:'center',justifyContent:'center',paddingTop:'90px'},
