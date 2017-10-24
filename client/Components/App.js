@@ -1,24 +1,33 @@
 import React,{ Component} from 'react';
-
 import ProductCard from './ProductCard'
+import Header from './Header'
+import SearchBar from './SearchBar'
+import ProductContainer from './ProductContainer'
 
 class App extends Component{
     constructor(){
         super()
         this.state = {
-            results : []
+            results : [],
+            cart: []
         }
     }
 
-    componentDidMount(){
+    handleAddtoCart(product){ //product4
+        var cart = this.state.cart // [product1,product2,product3]
+        cart.push(product) //[product1,product2,product3,product4]
+        this.setState({
+            cart
+        })
+    }
 
+    componentDidMount(){
         var self = this
         fetch('https://api.myjson.com/bins/apf1z')
         .then(function(res){
             return res.json()
         })
         .then(function(jsonResponse){
-                console.log(jsonResponse)
             self.setState({
                 results: jsonResponse
             })
@@ -35,14 +44,11 @@ class App extends Component{
     render(){
         return(
             <div>
-                {
-
-                    this.state.results.length ?
-                    this.state.results.map(function(eachProduct){
-                        return <ProductCard key={eachProduct.productName} title={eachProduct.productName} button={eachProduct.price} isAvailable={eachProduct.available}/>
-                    }) :
-                    <div> Loading.... </div> 
-                }
+                <Header count={this.state.cart.length}/>
+                <SearchBar />
+                <ProductContainer 
+                    results={this.state.results} 
+                    handleAddtoCart={ (product)=>this.handleAddtoCart(product) }/>
             </div>
         )
     }

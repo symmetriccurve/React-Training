@@ -2,12 +2,11 @@ import React, { Component } from 'react'
 import ProductCard from '../Components/ProductCard'
 
 class ProductContainer extends Component{
-    
-    componentWillReceiveProps(nextProps){
-        console.log('===>>>',this.props,nextProps)
+    shouldComponentUpdate(){
+        return false
     }
-
     render(){
+        console.log("ProductContainer: I'm Rendering")
         return(
            <div style={{display:'flex',flex:1,paddingTop:'70px',alignItems:'center',justifyContent:'center',flexDirection:'column'}}> 
                 {
