@@ -2,11 +2,23 @@ import React, { Component } from 'react'
 
 
 class SearchBar extends Component{
+    constructor(props){
+        super(props)
+        this.state = {
+            searchString: ''
+        }
+    }
+    
+    handleChange(e){
+        this.setState({searchString:e.target.value})
+        this.props.searchStringChange(e.target.value)
+    }
+    
     render(){
         return(
             <div style={s.a}>
                 <div style={s.b}>
-                    <input style={s.c}/>
+                    <input style={s.c} value={this.state.searchString} onChange={(e)=>{this.handleChange(e)}}/>
                 </div>   
             </div>
         )

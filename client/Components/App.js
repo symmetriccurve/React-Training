@@ -3,13 +3,18 @@ import ProductCard from './ProductCard'
 import Header from './Header'
 import SearchBar from './SearchBar'
 import ProductContainer from './ProductContainer'
+import { Provider } from 'react-redux';
+import store from '../store'
+import {connect} from 'react-redux';
 
 class App extends Component{
     constructor(){
         super()
         this.state = {
             results : [],
-            cart: []
+            cart: [],
+            filteredResults: [],
+            searchString: ''
         }
     }
 
@@ -29,7 +34,8 @@ class App extends Component{
         })
         .then(function(jsonResponse){
             self.setState({
-                results: jsonResponse
+                results: jsonResponse,
+                filteredResults: jsonResponse
             })
 
         })
@@ -39,18 +45,45 @@ class App extends Component{
 
     }
 
+    searchStringChange(searchString){
+        this.setState({searchString},()=> {
+            var filteredResults = this.state.results.filter(function(product){
+                debugger
+                return product.productName.toLowerCase().indexOf(searchString) !== -1
+            })
+            this.setState({
+                filteredResults
+            })
+            //console.log("results",results)
+        })
+    }
+
 
 
     render(){
-        return(
+        return( 
             <div>
                 <Header count={this.state.cart.length}/>
-                <SearchBar />
+                <SearchBar searchStringChange={ (searchString)=>this.searchStringChange(searchString) }/>/>
                 <ProductContainer 
-                    results={this.state.results} 
+                    results={this.state.filteredResults} 
                     handleAddtoCart={ (product)=>this.handleAddtoCart(product) }/>
             </div>
         )
     }
 }
-module.exports = App
+
+// function mapStateToProps(state) {
+//     return {
+//         state: state
+//     };
+// }
+
+// function mapDispatchToProps(dispatch) {
+//     //mapDispatchToProps is optional, but useful when passed to a stateless component without connecting to store
+//     return {
+
+//     };
+// }
+
+module.export = App
