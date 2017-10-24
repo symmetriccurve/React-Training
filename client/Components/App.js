@@ -1,126 +1,36 @@
 import React, {Component} from 'react';
-var GreetingCard = {
-    wish: "Happy New Year !",
-    year: 123456,
-    greetings: "May this Year Bring you more than what you Deserve"
-}
+import GreetingCard from './Greetingcard.js';
+
 class App extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            posts: []
+        };
+    }
+
     render() {
         return (
             <div>
-                <div>
-                    <div
-                        style={{
-                        display: 'flex',
-                        padding: '20px',
-                        height: '200px',
-                        width: '500px',
-                        backgroundColor: '#44B6EC'
-                    }}>
-                        <div
-                            style={{
-                            display: 'flex',
-                            flex: 1,
-                            flexDirection: 'column'
-                        }}>
-                            <div
-                                style={{
-                                display: 'flex',
-                                height: '30%'
-                            }}>
-                                <div
-                                    style={{
-                                    display: 'flex',
-                                    flex: 3,
-                                    height: '30%',
-                                    alignItems: 'center',
-                                    justifyContent: 'flex-start'
-                                }}>
-                                    <span
-                                        style={{
-                                        color: '#434040',
-                                        fontFamily: 'Verdana, Geneva, sans-serif',
-                                        fontSize: '30px',
-                                        fontWeight: 'bold',
-                                        color: 'white'
-                                    }}>
-                                        {GreetingCard.wish}
-                                    </span>
-                                </div>
-                                <div
-                                    style={{
-                                    display: 'flex',
-                                    flex: 1,
-                                    height: '30%',
-                                    alignItems: 'center',
-                                    justifyContent: 'flex-start'
-                                }}>
-                                    <span
-                                        style={{
-                                        color: '#434040',
-                                        fontFamily: 'Verdana, Geneva, sans-serif',
-                                        fontSize: '20px',
-                                        color: 'white'
-                                    }}>
-                                        {GreetingCard.year}
-                                    </span>
-                                </div>
-                            </div>
-                            <div
-                                style={{
-                                display: 'flex',
-                                height: '40%',
-                                alignItems: 'center',
-                                justifyContent: 'flex-start',
-                                shadowColor: '#000000',
-                                shadowOffset: {
-                                    width: 0,
-                                    height: 3
-                                },
-                                shadowRadius: 1,
-                                shadowOpacity: 0.1
-                            }}>
-                                <span
-                                    style={{
-                                    color: '#434040',
-                                    fontFamily: 'Verdana, Geneva, sans-serif',
-                                    fontSize: '20px',
-                                    color: 'white'
-                                }}>
-                                    {GreetingCard.greetings}
-                                </span>
-                            </div>
-                            <div
-                                style={{
-                                display: 'flex',
-                                backgroundColor: 'white',
-                                height: '25%',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                shadowColor: '#000000',
-                                shadowOffset: {
-                                    width: 0,
-                                    height: 3
-                                },
-                                shadowRadius: 1,
-                                shadowOpacity: 0.1
-                            }}>
-                                <span
-                                    style={{
-                                    color: '#434040',
-                                    fontFamily: 'Verdana, Geneva, sans-serif',
-                                    fontSize: '20px',
-                                    fontWeight: '800'
-                                }}>
-                                    Click Me
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <GreetingCard name={this.state.posts.age}/>
+                <GreetingCard name={"chandu"}/>
+                <GreetingCard name={"Abhinav"}/>
+                <GreetingCard name={"vinay"}/>
+
             </div>
         );
     }
+    componentDidMount() {
+        axios
+            .get('http://api.population.io:80/1.0/population/2017/Brazil/')
+            .then(res => {
+                this.setState({posts: res.data});
+                console.log(res.data)
+            })
+            .catch(err => console.log(err));
+    }
+
 }
 
 module.exports = App
