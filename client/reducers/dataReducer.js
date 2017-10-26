@@ -6,6 +6,17 @@ var defaultState = {
 }
 
 function dataReducer(newState = defaultState,action){
+    
+    switch(action.type){
+        case 'search':
+            return Object.assign({},newState,{searchString:action.text})
+        case 'addToCart':
+            debugger
+            var holder = Object.assign({},newState,{cart:newState.cart.concat(action.item)})
+            return holder
+        case 'search':
+            return Object.assign({},newState,{searchString:action.text})
+    }
    // var  = defaultState
     /* 
         SwitchCases that will Change the state and give new State

@@ -3,7 +3,7 @@ import Header from '../components/Header'
 import SearchBar from '../components/SearchBar'
 import ProductContainer from './ProductContainer'
 import { connect } from 'react-redux'
-
+var renderCount = 0 
 class App extends Component{
     constructor(){
         super()
@@ -42,37 +42,40 @@ class App extends Component{
 
     }
 
-    searchStringChange(searchString){
-        this.setState({ searchString },()=> {
-            var filteredResults = this.state.results.filter(function(product){
-                return product.productName.toLowerCase().indexOf(searchString) !== -1
-            })
+    componentWillReceiveProps(nextProps){
+        var filteredResults = this.state.results.filter(function(product){
+            return product.productName.toLowerCase().indexOf(nextProps.dataReducer.searchString) !== -1
+        })
 
-            this.setState({
-                filteredResults
-            })
-            
-            //console.log("results",results)
+        this.setState({
+            filteredResults
         })
     }
 
+    componentDidUpdate(prevProps, prevState){
+        // Use this Method to Update anything out the React world like third party API. //
+        console.log('componentDidUpdate',prevProps,prevState)
+    }
+
+    componentWillUpdate(nextProps, nextState) {
+        console.log('componentWillUpdate',nextProps, nextState)
+    }
+
+    // if shouldComponentUpdate() returns false, then componentWillUpdate(), render(), and componentDidUpdate() will not be invoked
+
+
     render(){
-        debugger 
-        console.log("app State",this.state)
-        console.log("app Props",this.props)
+        renderCount = renderCount + 1
+        console.log("Render Count",renderCount)
+        //console.log("app State",this.state)
+        //console.log("app Props",this.props)
         return( 
             <div>
-                <Header count={this.state.cart.length}/>
-                <SearchBar searchStringChange={ (searchString)=>this.searchStringChange(searchString) }/>/>
+                <Header count={this.props.dataReducer.cart.length}/>
+                <SearchBar searchString={ this.props.dataReducer.searchString } />
                 <ProductContainer 
                     results={this.state.filteredResults} 
-                    handleAddtoCart={ (product)=>this.handleAddtoCart(product) }>
-                    <productCard/>
-                    <productCard/>
-                    <productCard/>
-                    <productCard/>
-                    <productCard/>
-                </ProductContainer>    
+                    handleAddtoCart={ (product)=>this.handleAddtoCart(product) }/>
             </div>
         )
     }

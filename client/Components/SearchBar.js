@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-
-
+import { updateSearch } from '../actions'
+import store from '../store'
 class SearchBar extends Component{
     constructor(props){
         super(props)
@@ -9,17 +9,17 @@ class SearchBar extends Component{
         }
     }
     
-    handleChange(e){
-        debugger
-        this.setState({searchString:e.target.value})
-        this.props.searchStringChange(e.target.value)
+    handleChange(e){        
+        //this.setState({searchString:e.target.value})
+        //this.props.searchStringChange(e.target.value)
+        store.dispatch(updateSearch(e.target.value))
     }
     
     render(){
         return(
             <div style={s.a}>
                 <div style={s.b}>
-                    <input style={s.c} value={this.state.searchString} onChange={(e)=>{this.handleChange(e)}}/>
+                    <input style={s.c} value={this.props.searchString} onChange={(e)=>{this.handleChange(e)}}/>
                  </div>   
             </div>
         )

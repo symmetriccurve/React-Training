@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 class ProductCard extends Component{
 
     render(){
-       console.log("ProductCard: I'm Rendering")
+       //console.log("ProductCard: I'm Rendering")
         return(
             <div style={s.a}>
                 <div style={s.b}>
@@ -30,7 +30,7 @@ class ProductCard extends Component{
 
 
     handleAddToCart(product,isAvailable){
-        //debugger
+        debugger
         if(isAvailable){
            this.props.handleAddtoCart(product)
         }

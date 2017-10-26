@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
 import ProductCard from '../components/ProductCard'
+import { connect } from 'react-redux'
+import { addToCart } from '../actions'
+import store from '../store'
 
 class ProductContainer extends Component{
 
     shouldComponentUpdate(newProps,newState){
-        console.log("This Props",this.props)
-        console.log("newProps",newProps)
+        //console.log("This Props",this.props)
+        //console.log("newProps",newProps)
         var oldResults = JSON.stringify(this.props.results)
         var newResults = JSON.stringify(newProps.results)
         if( oldResults == newResults ){
@@ -28,7 +31,7 @@ class ProductContainer extends Component{
     */
 
     render(){
-        console.log("ProductContainer: I'm Rendering")
+        console.log("ProductContainer: I'm Rendering",this.props)
         return(
            <div style={{display:'flex',flex:1,paddingTop:'70px',alignItems:'center',justifyContent:'center',flexDirection:'column'}}> 
                 {
@@ -39,7 +42,7 @@ class ProductContainer extends Component{
                                 title={eachProduct.productName} 
                                 button={eachProduct.price} 
                                 isAvailable={eachProduct.available} 
-                                handleAddtoCart = { (product)=> this.props.handleAddtoCart(product)}
+                                handleAddtoCart = { (product)=> this.props.addToCart(product)}
                             />
                     }) :
                     <div> Loading.... </div> 
@@ -59,7 +62,23 @@ ProductContainer.defaultProps = {
 }
 
 
-module.exports = ProductContainer
+function mapStateToProps(state){
+    return {
+       dataReducer:state.dataReducer      //retrun what we needed for this component
+    }
+}
+
+function mapDispatchToProps(dispatch){
+    //debugger
+    return ({ 
+        addToCart: (product) => store.dispatch(addToCart(product))
+    })
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(ProductContainer)
 
 
 {/*
