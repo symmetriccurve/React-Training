@@ -30,7 +30,7 @@ class ProductCard extends Component{
 
 
     handleAddToCart(product,isAvailable){
-        debugger
+        //debugger
         if(isAvailable){
            this.props.handleAddtoCart(product)
         }
