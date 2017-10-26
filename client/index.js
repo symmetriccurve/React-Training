@@ -1,11 +1,22 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
+import { Provider } from 'react-redux'
 
-import App from 'Components/App';
-//import App from 'Components/AppWithinComponentStyle'
+import store from './store'
+
+import App from './containers/App';
+
 ReactDOM.render(
-  <div style={{height:'100vh',width:'100vw',backgroundColor:'#FCFCFC'}}>
-     <App />
-  </div>   ,
+  <Provider store={store}>
+     <App/>
+  </Provider>,
   document.getElementById('root')
 );
+
+{/*
+  <Provider> // State is Here
+    <App> //child 
+      //children getting state from App as props
+    </App>
+  </Provider> 
+*/}

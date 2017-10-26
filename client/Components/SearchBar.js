@@ -2,26 +2,28 @@ import React, { Component } from 'react'
 
 
 class SearchBar extends Component{
+    constructor(props){
+        super(props)
+        this.state = {
+            searchString: ''
+        }
+    }
+    
+    handleChange(e){
+        debugger
+        this.setState({searchString:e.target.value})
+        this.props.searchStringChange(e.target.value)
+    }
+    
     render(){
         return(
             <div style={s.a}>
                 <div style={s.b}>
-                    <input style={s.c}/>
-                </div>   
+                    <input style={s.c} value={this.state.searchString} onChange={(e)=>{this.handleChange(e)}}/>
+                 </div>   
             </div>
         )
     }
-}
-
-SearchBar.propTypes = {
-    title:React.PropTypes.string.isRequired,
-    button:React.PropTypes.string,
-    isAvailable: React.PropTypes.bool.isRequired
-}
-
-SearchBar.defaultProps = {
-    //title: "Title is Missing",
-    button: "ButtonText is missing" 
 }
 
 

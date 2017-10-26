@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import ProductCard from '../Components/ProductCard'
+import ProductCard from '../components/ProductCard'
 
 class ProductContainer extends Component{
 
