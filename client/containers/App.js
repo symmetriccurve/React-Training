@@ -3,15 +3,17 @@ import Header from '../components/Header'
 import SearchBar from '../components/SearchBar'
 import ProductContainer from './ProductContainer'
 import { connect } from 'react-redux'
+import store from '../store'
+import { fetchData } from '../actions'
 var renderCount = 0 
 class App extends Component{
     constructor(){
         super()
         this.state = {
-            results : [],
-            cart: [],
+            //results : [],
+            //cart: [],
             filteredResults: [],
-            searchString: ''
+           // searchString: ''
         }
     }
 
@@ -25,25 +27,27 @@ class App extends Component{
 
     componentDidMount(){
         var self = this
-        fetch('https://api.myjson.com/bins/apf1z')
-        .then(function(res){
-            return res.json()
-        })
-        .then(function(jsonResponse){
-            self.setState({
-                results: jsonResponse,
-                filteredResults: jsonResponse
-            })
+        // fetch('https://api.myjson.com/bins/apf1z')
+        // .then(function(res){
+        //     return res.json()
+        // })
+        // .then(function(jsonResponse){
+        //     self.setState({
+        //         results: jsonResponse,
+        //         filteredResults: jsonResponse
+        //     })
 
-        })
-        .catch(function(error){
-            console.log("That's a Error Abhinav",error)
-        })
+        // })
+        // .catch(function(error){
+        //     console.log("That's a Error Abhinav",error)
+        // })
+        store.dispatch(fetchData())
 
     }
 
     componentWillReceiveProps(nextProps){
-        var filteredResults = this.state.results.filter(function(product){
+        debugger
+        var filteredResults = nextProps.dataReducer.results.filter(function(product){
             return product.productName.toLowerCase().indexOf(nextProps.dataReducer.searchString) !== -1
         })
 

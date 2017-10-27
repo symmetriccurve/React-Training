@@ -11,11 +11,12 @@ function dataReducer(newState = defaultState,action){
         case 'search':
             return Object.assign({},newState,{searchString:action.text})
         case 'addToCart':
-            debugger
+            // debugger
             var holder = Object.assign({},newState,{cart:newState.cart.concat(action.item)})
             return holder
-        case 'search':
-            return Object.assign({},newState,{searchString:action.text})
+        case 'APIResponse':
+            // debugger
+            return Object.assign({},newState,{results:action.response})
     }
    // var  = defaultState
     /* 
