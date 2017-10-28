@@ -18,10 +18,10 @@ var webpackConfig = {
         rules: [
             {
                 test: /\.(js|jsx)$/,
-                exclude: /node_modules/,
+                exclude: /node_modules\/(?!(first-nom-dir)\/).*/,
                 use: [
                     'babel-loader'
-                ],
+                ]
             }
         ],
     },

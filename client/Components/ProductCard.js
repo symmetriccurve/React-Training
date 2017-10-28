@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 class ProductCard extends Component{
 
     render(){
-       //console.log("ProductCard: I'm Rendering")
+       ////console.("ProductCard: I'm Rendering")
         return(
             <div style={s.a}>
                 <div style={s.b}>

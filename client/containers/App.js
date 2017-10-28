@@ -1,17 +1,20 @@
 import React,{ Component} from 'react';
 import Header from '../components/Header'
 import SearchBar from '../components/SearchBar'
+import Sort from '../components/Sort'
 import ProductContainer from './ProductContainer'
 import { connect } from 'react-redux'
+import store from '../store'
+import { fetchData } from '../actions'
 var renderCount = 0 
 class App extends Component{
     constructor(){
         super()
         this.state = {
-            results : [],
-            cart: [],
+            //results : [],
+            //cart: [],
             filteredResults: [],
-            searchString: ''
+            //searchString: ''
         }
     }
 
@@ -22,43 +25,49 @@ class App extends Component{
             cart
         })
     }
+/* 
 
+    FIRST RENDER => 
+        Constructor
+        ComponentWillMount
+        Render []
+        ComponentDidMount
+
+    StateChagne or PropChange
+        Render
+        ShouldComponentUpdate
+
+        ComponentWillUpdate
+        ComponentDidUpdate
+
+        //PropChange
+        ComponentWillReceiveProps  
+
+*/
     componentDidMount(){
-        var self = this
-        fetch('https://api.myjson.com/bins/apf1z')
-        .then(function(res){
-            return res.json()
-        })
-        .then(function(jsonResponse){
-            self.setState({
-                results: jsonResponse,
-                filteredResults: jsonResponse
-            })
-
-        })
-        .catch(function(error){
-            console.log("That's a Error Abhinav",error)
-        })
-
+        store.dispatch(fetchData())
     }
 
     componentWillReceiveProps(nextProps){
-        var filteredResults = this.state.results.filter(function(product){
-            return product.productName.toLowerCase().indexOf(nextProps.dataReducer.searchString) !== -1
-        })
+       if(JSON.stringify(this.props) != JSON.stringify(nextProps)) {
 
-        this.setState({
-            filteredResults
-        })
+            var filteredResults = nextProps.dataReducer.results.filter(function(product){
+                return product.productName.toLowerCase().indexOf(nextProps.dataReducer.searchString) !== -1
+            })
+
+            this.setState({
+                filteredResults
+            })
+       }
     }
 
     componentDidUpdate(prevProps, prevState){
         // Use this Method to Update anything out the React world like third party API. //
-        console.log('componentDidUpdate',prevProps,prevState)
+        //console.('componentDidUpdate',prevProps,prevState)
     }
 
     componentWillUpdate(nextProps, nextState) {
-        console.log('componentWillUpdate',nextProps, nextState)
+        //console.('componentWillUpdate',nextProps, nextState)
     }
 
     // if shouldComponentUpdate() returns false, then componentWillUpdate(), render(), and componentDidUpdate() will not be invoked
@@ -67,21 +76,22 @@ class App extends Component{
     render(){
         renderCount = renderCount + 1
         console.log("Render Count",renderCount)
-        //console.log("app State",this.state)
-        //console.log("app Props",this.props)
+        ////console.("app State",this.state)
+        ////console.("app Props",this.props)
         return( 
             <div>
-                <Header count={this.props.dataReducer.cart.length}/>
+               <Header count={this.props.dataReducer.cart.length}/>
                 <SearchBar searchString={ this.props.dataReducer.searchString } />
                 <ProductContainer 
                     results={this.state.filteredResults} 
-                    handleAddtoCart={ (product)=>this.handleAddtoCart(product) }/>
+                    handleAddtoCart={ (product)=>this.handleAddtoCart(product) }/> 
             </div>
         )
     }
 }
 
 function mapStateToProps(state){
+    //debugger
     return {
        dataReducer:state.dataReducer      //retrun what we needed for this component
     }

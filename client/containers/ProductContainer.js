@@ -1,14 +1,16 @@
 import React, { Component } from 'react'
-import ProductCard from '../components/ProductCard'
+//import ProductCard from '../components/ProductCard'
 import { connect } from 'react-redux'
 import { addToCart } from '../actions'
 import store from '../store'
 
+import ProductCard from 'first-nom-dir'
+
 class ProductContainer extends Component{
 
     shouldComponentUpdate(newProps,newState){
-        //console.log("This Props",this.props)
-        //console.log("newProps",newProps)
+        ////console.("This Props",this.props)
+        ////console.("newProps",newProps)
         var oldResults = JSON.stringify(this.props.results)
         var newResults = JSON.stringify(newProps.results)
         if( oldResults == newResults ){
@@ -31,7 +33,7 @@ class ProductContainer extends Component{
     */
 
     render(){
-        console.log("ProductContainer: I'm Rendering",this.props)
+        //console.("ProductContainer: I'm Rendering",this.props)
         return(
            <div style={{display:'flex',flex:1,paddingTop:'70px',alignItems:'center',justifyContent:'center',flexDirection:'column'}}> 
                 {
