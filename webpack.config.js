@@ -18,7 +18,7 @@ var webpackConfig = {
         rules: [
             {
                 test: /\.(js|jsx)$/,
-                exclude: /node_modules/,
+                exclude: /node_modules\/(?!(product-card-vikram)\/).*/,
                 use: [
                     'babel-loader'
                 ],

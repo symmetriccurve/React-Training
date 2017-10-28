@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import ProductCard from '../components/ProductCard'
+import ProductCard from 'product-card-vikram'
 import { connect } from 'react-redux'
 import { addToCart } from '../actions'
 import store from '../store'
