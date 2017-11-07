@@ -1,23 +1,64 @@
 const webpack = require('webpack');
 const path = require('path');
+var OpenBrowserPlugin = require('open-browser-webpack-plugin');
 
 const sourcePath = path.join(__dirname, './client');
-const distPath = path.join(__dirname, './dist');
+const staticsPath = path.join(__dirname, './static');
 
 var webpackConfig = {
-    entry: sourcePath + '/index.js',
+    devtool: 'eval-source-map',
+    context: sourcePath,
+    entry: {
+        js: './index.js',
+    },
+    watchOptions: {
+        poll: true
+    },
     output: {
-        path: distPath,
+        path: staticsPath,
         filename: 'bundle.js',
     },
     module: {
-        rules: [
+        rules: [{
+            test: /\.html$/,
+            exclude: /node_modules/,
+            use: {
+                loader: 'file-loader',
+                query: {
+                    name: '[name].[ext]'
+                },
+            },
+        },
+            {
+                test: /\.css$/,
+                //exclude: /node_modules/,
+                use: [
+                    'style-loader',
+                    'css-loader'
+                ]
+            },
+            {
+                test: /\.(sass|scss)$/,
+                exclude: /node_modules/,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    'sass-loader',
+                ]
+            },
             {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 use: [
                     'babel-loader'
                 ],
+            },
+            {
+                test: /\.png$/,
+                exclude: /node_modules/,
+                use: [
+                    'file-loader?name=images/[name].[ext]'
+                ]
             }
         ],
     },
@@ -28,8 +69,25 @@ var webpackConfig = {
         compress: false,
         inline: true,
         hot: true,
+        stats: {
+            assets: true,
+            children: false,
+            chunks: false,
+            hash: false,
+            modules: false,
+            publicPath: false,
+            timings: true,
+            version: false,
+            warnings: true,
+            colors: {
+                green: '\u001b[32m',
+            }
+        },
     },
     plugins: [
+        new OpenBrowserPlugin({
+            url: 'http://localhost:3000'
+        }),
         new webpack.HotModuleReplacementPlugin()
     ],
     resolve: {
