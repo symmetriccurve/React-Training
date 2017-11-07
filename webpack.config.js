@@ -2,16 +2,12 @@ const webpack = require('webpack');
 const path = require('path');
 
 const sourcePath = path.join(__dirname, './client');
-const staticsPath = path.join(__dirname, './static');
+const distPath = path.join(__dirname, './dist');
 
 var webpackConfig = {
-    devtool: 'eval-source-map',
-    context: sourcePath,
-    entry: {
-        js: './index.js',
-    },
+    entry: sourcePath + '/index.js',
     output: {
-        path: staticsPath,
+        path: distPath,
         filename: 'bundle.js',
     },
     module: {
