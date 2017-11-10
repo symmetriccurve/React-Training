@@ -6,36 +6,23 @@ class MyComponent extends Component {
     constructor(){
         super()
         this.state  = {
-            products: [
-                {
-                    productName : 'Fogg',
-                    productPrice : '$250',
-                    isAvailable : false ,
-                    size: '100ml'
-                },
-                {
-                    productName : 'Axe',
-                    productPrice : '$150',
-                    isAvailable : false 
-                },
-                {
-                    productName : 'KS',
-                    productPrice : '$150',
-                    isAvailable : false,
-                    size: '200ml'
-                },
-                {
-                    productName : 'Chandan',
-                    productPrice : '$250',
-                    isAvailable : false 
-                },
-                {
-                    productName : 'sandlewood',
-                    productPrice : '$250',
-                    isAvailable : false 
-                }
-            ]
+            products: []
         }
+    }
+
+    componentDidMount(){
+
+       fetch('https://api.myjson.com/bins/ycv7r')
+       .then((response)=>{
+          return response.json()
+        })
+       .then((json)=>{
+           this.setState({
+               products: json
+           })
+       })
+       .catch((error)=>{console.log(error)})
+
     }
     
     render(){
