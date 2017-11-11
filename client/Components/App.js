@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
 import '../styles/App.css'
 import ProductCard from './ProductCard'
+import Header from './Header'
 
-class MyComponent extends Component {
+class App extends Component {
     constructor(){
         super()
         this.state  = {
-            products: []
+            products: [],
+            cartCount: 0,
+            cart: []
         }
     }
 
     componentDidMount(){
 
-       fetch('https://api.myjson.com/bins/ycv7r')
+       fetch('https://api.myjson.com/bins/11j4n3')
        .then((response)=>{
           return response.json()
         })
@@ -24,13 +27,26 @@ class MyComponent extends Component {
        .catch((error)=>{console.log(error)})
 
     }
+
+    handleAddToCart(productName){
+        console.log("This is the Product you clicked and I can be seen on APP ",productName)
+        this.setState({
+            cartCount: this.state.cartCount + 1
+        })
+    }
     
     render(){
         return (
             <div>
+                <Header cartCount = { this.state.cartCount }/>
                 {
-                    this.state.products.map((eachProduct)=>{
-                        return <ProductCard key = {eachProduct.productName} name = { eachProduct.productName } price = { eachProduct.productPrice } size={eachProduct.size}/>
+                    this.state.products.map((eachProduct,i)=>{
+                        return <ProductCard 
+                            key = {eachProduct.productName+i} 
+                            name = { eachProduct.productName } 
+                            price = { eachProduct.productPrice } 
+                            size = { eachProduct.size }
+                            handleAddToCart = {(productName) => this.handleAddToCart(productName) }/>
                     })
                 }
             </div>
@@ -49,7 +65,7 @@ const s = {
     h:{color:'#252725',fontFamily: 'Verdana, Geneva, sans-serif',fontSize:'40px',fontWeight:'800'}
 }
 
-module.exports = MyComponent
+module.exports = App
 
 // var products = ['soap','dish washer','brush']
 
