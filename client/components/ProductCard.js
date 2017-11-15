@@ -25,7 +25,7 @@ class ProductCard extends Component {
     }
 
     render(){
-        console.log("Props to Product Card",this.props)
+        //console.log("Props to Product Card",this.props)
         return (
             <div style={s.a} className='main-container'>
                 <div style={s.b} className='content-container'>
