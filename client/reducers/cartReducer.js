@@ -1,5 +1,6 @@
 var defaultState = {
-    cart: []
+    cart: [],
+    cartCount: []
 }
 
 function cartReducer( state = defaultState, action ){  

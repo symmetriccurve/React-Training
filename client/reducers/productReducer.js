@@ -1,5 +1,6 @@
 var defaultState = {
-    products: []
+    products: [],
+    selectedProduct : ''
 }
 
 function productReducer( state = defaultState, action ){  

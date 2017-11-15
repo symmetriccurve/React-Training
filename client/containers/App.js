@@ -1,27 +1,28 @@
 import React, { Component } from 'react';
-import '../styles/App.css'
-import ProductCard from './ProductCard'
-import Header from './Header'
+import Header from '../components/Header'
+import { connect } from 'react-redux'
+import ProductContainer from './ProductContainer'
+import store from '../store'
+import { userClick } from '../actions/productActions'
 
 class App extends Component {
     constructor(){
         super()
         this.state  = {
-            products: [],
+            productsFromComponentState: [],
             cartCount: 0,
             cart: []
         }
     }
 
     componentDidMount(){
-
        fetch('https://api.myjson.com/bins/11j4n3')
        .then((response)=>{
           return response.json()
         })
        .then((json)=>{
            this.setState({
-               products: json
+               productsFromComponentState: json
            })
        })
        .catch((error)=>{console.log(error)})
@@ -38,17 +39,9 @@ class App extends Component {
     render(){
         return (
             <div>
+                <div style={{height:'100px',width:'100px',backgroundColor:'black'}} onClick={()=>{store.dispatch(userClick())}}/>
                 <Header cartCount = { this.state.cartCount }/>
-                {
-                    this.state.products.map((eachProduct,i)=>{
-                        return <ProductCard 
-                            key = {eachProduct.productName+i} 
-                            name = { eachProduct.productName } 
-                            price = { eachProduct.productPrice } 
-                            size = { eachProduct.size }
-                            handleAddToCart = {(productName) => this.handleAddToCart(productName) }/>
-                    })
-                }
+                <ProductContainer products={this.state.productsFromComponentState}/>
             </div>
         )
     }
@@ -65,7 +58,68 @@ const s = {
     h:{color:'#252725',fontFamily: 'Verdana, Geneva, sans-serif',fontSize:'40px',fontWeight:'800'}
 }
 
-module.exports = App
+
+
+function mapStateToProps(state){
+    return {
+        productsFromReducer : state.products
+    }
+}
+
+function mapDispatchToProps(dispatch){
+    return {
+        
+    }
+}
+
+export default connect(
+    mapStateToProps, 
+    mapDispatchToProps
+)(App)
+
+
+// <App>
+//     <Header></Header>
+//     <ProductCard/>
+//     <ProductCard/>
+//     <ProductCard/>
+//     <ProductCard/>
+//     <ProductCard/>
+//     <ProductCard/>
+//     <ProductCard/>
+//     <ProductCard/>   
+// </App>
+
+
+//  <App>
+//     <Header/>
+//     <ProductContainer/>   
+// </App>
+
+
+// Reducer                                                         App Containers(cart) => Components/Compoennts/Components  => Action 
+// Reducer                                                         Containers(products)=> Components/Compoennts/Components
+// Reducer                                                         Containers=> Components/Compoennts/Components
+// Reducer                                                         Containers=> Components/Compoennts/Components
+// Reducer                                                         Containers=> Components/Compoennts/Components
+// Reducer   => RootReducer => CreateStore(RootReducer) =>Store(cart, products)=> Containers=> Components/Compoennts/Components                                                Containers
+// Reducer                                                         Containers=> Components/Compoennts/Components
+// Reducer                                                         Containers=> Components/Compoennts/Components
+// Reducer                                                         Containers=> Components/Compoennts/Components
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // var products = ['soap','dish washer','brush']
 
@@ -99,3 +153,4 @@ module.exports = App
 //     <Children/>
 //     <Children/>
 // <Parent>    
+

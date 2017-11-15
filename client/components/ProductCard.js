@@ -14,7 +14,7 @@ class ProductCard extends Component {
             isAddedToCart: true
         })
 
-        this.props.handleAddToCart(productName)
+        //this.props.handleAddToCart(productName)
     }
 
     shouldComponentUpdate(newProps,newState){
@@ -24,8 +24,16 @@ class ProductCard extends Component {
         return false
     }
 
+    componentWillUpdate(){
+      console.log('componentWillUpdate')
+    }
+
+    componentDidUpdate(){
+      console.log('componentDidUpdate')
+    }
+
     render(){
-        //console.log("Props to Product Card",this.props)
+        console.log("I'm product Card and I render",this.props.name)
         return (
             <div style={s.a} className='main-container'>
                 <div style={s.b} className='content-container'>
