@@ -4,6 +4,6 @@ import productReducer from './productReducer'
 /* Import any more reducers here */
 
 export default combineReducers({
-    cart : cartReducer,
-    products: productReducer
+    cartReducer : cartReducer,
+    productReducer: productReducer
 })

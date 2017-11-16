@@ -11,7 +11,7 @@ class App extends Component {
         this.state  = {
             productsFromComponentState: [],
             cartCount: 0,
-            cart: []
+            //cart: []
         }
     }
 
@@ -29,18 +29,18 @@ class App extends Component {
 
     }
 
-    handleAddToCart(productName){
-        console.log("This is the Product you clicked and I can be seen on APP ",productName)
-        this.setState({
-            cartCount: this.state.cartCount + 1
-        })
-    }
+    // handleAddToCart(productName){
+    //     console.log("This is the Product you clicked and I can be seen on APP ",productName)
+    //     this.setState({
+    //         cartCount: this.state.cartCount + 1
+    //     })
+    // }
     
     render(){
         return (
             <div>
                 <div style={{height:'100px',width:'100px',backgroundColor:'black'}} onClick={()=>{store.dispatch(userClick())}}/>
-                <Header cartCount = { this.state.cartCount }/>
+                <Header cartCount = { this.props.cart.length }/>
                 <ProductContainer products={this.state.productsFromComponentState}/>
             </div>
         )
@@ -62,7 +62,8 @@ const s = {
 
 function mapStateToProps(state){
     return {
-        productsFromReducer : state.products
+        productsFromReducer : state.products,
+        cart: state.cartReducer.cart
     }
 }
 

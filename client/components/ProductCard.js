@@ -9,12 +9,14 @@ class ProductCard extends Component {
     }
 
     localHandleAddToCart(productName){
-
+        if(this.state.isAddedToCart){
+            this.props.removeFromCart(productName)
+        }else {
+            this.props.addToCart(productName)
+        }
         this.setState({
-            isAddedToCart: true
+            isAddedToCart: !this.state.isAddedToCart
         })
-
-        //this.props.handleAddToCart(productName)
     }
 
     shouldComponentUpdate(newProps,newState){
