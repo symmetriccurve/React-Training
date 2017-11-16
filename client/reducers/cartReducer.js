@@ -4,7 +4,12 @@ var defaultState = {
 }
 
 function cartReducer( state = defaultState, action ){  
-    return state 
+    debugger
+    if(action.type == 'addToCart'){
+         return Object.assign({},{ cart: state.cart.concat( action.product) } ) 
+    }
+
+    return state
 }
 
 module.exports = cartReducer

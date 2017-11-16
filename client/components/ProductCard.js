@@ -14,7 +14,7 @@ class ProductCard extends Component {
             isAddedToCart: true
         })
 
-        //this.props.handleAddToCart(productName)
+        this.props.handleAddToCart(productName)
     }
 
     shouldComponentUpdate(newProps,newState){

@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import ProductCard from '../components/ProductCard'
 import { connect } from 'react-redux'
+import { addToCart } from '../actions/cartActions'
+import store from '../store'
 
 class ProductContainer extends Component {
     render(){
+        console.log("Props",this)
+        //debugger
         return(
             <div>
                 {
@@ -13,7 +17,7 @@ class ProductContainer extends Component {
                             name = { eachProduct.productName } 
                             price = { eachProduct.productPrice } 
                             size = { eachProduct.size }
-                            handleAddToCart = {(productName) => this.handleAddToCart(productName) }/>
+                            handleAddToCart = {(productName) => this.props.addToCart(productName) }/>
                     })
                 }
             </div>    
@@ -31,7 +35,7 @@ function mapStateToProps(state){
 
 function mapDispatchToProps(dispatch){
     return {
-        
+        addToCart: (product)=>{store.dispatch(addToCart(product))}
     }
 }
 

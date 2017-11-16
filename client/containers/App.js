@@ -39,9 +39,11 @@ class App extends Component {
     render(){
         return (
             <div>
-                <div style={{height:'100px',width:'100px',backgroundColor:'black'}} onClick={()=>{store.dispatch(userClick())}}/>
+                <div style={{height:'100px',width:'100px',backgroundColor:'black'}} onClick={()=>{
+                    store.dispatch({ type: 'userClick'})
+                    }}/>
                 <Header cartCount = { this.state.cartCount }/>
-                <ProductContainer products={this.state.productsFromComponentState}/>
+                <ProductContainer products = { this.state.productsFromComponentState }/>
             </div>
         )
     }
