@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ProductCard from '../components/ProductCard'
-import { connect } from 'react-redux'
+import { connect, bindActionCreators } from 'react-redux'
 import { addToCart } from '../actions/cartActions'
 import store from '../store'
 
@@ -35,9 +35,21 @@ function mapStateToProps(state){
 
 function mapDispatchToProps(dispatch){
     return {
-        addToCart: (product)=>{store.dispatch(addToCart(product))}
+        addToCart: (product)=>{dispatch(addToCart(product))}
     }
 }
+
+// function mapDispatchToProps(dispatch){
+//     return bindActionCreators({
+//         addToCart: addToCart
+//     },dispatch)
+// }
+
+
+// const mapDispatchToProps = dispatch => bindActionCreators({
+//         addToCart: addToCart
+//     },dispatch)
+
 
 export default connect(
     mapStateToProps, 
