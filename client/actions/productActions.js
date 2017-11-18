@@ -1,4 +1,4 @@
 
-export function userClick(){
+export function getProducts(){
     return { type: 'userClick'}
 }
