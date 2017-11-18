@@ -3,7 +3,7 @@ import Header from '../components/Header'
 import { connect } from 'react-redux'
 import ProductContainer from './ProductContainer'
 import store from '../store'
-import { userClick } from '../actions/productActions'
+import { getProducts } from '../actions/productActions'
 
 class App extends Component {
     constructor(){

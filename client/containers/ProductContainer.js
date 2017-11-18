@@ -11,7 +11,7 @@ class ProductContainer extends Component {
                 {
                     this.props.products.map((eachProduct,i)=>{
                         return <ProductCard 
-                                key = {eachProduct.productName+i} 
+                                key = { eachProduct.productName } 
                                 name = { eachProduct.productName } 
                                 price = { eachProduct.productPrice } 
                                 size = { eachProduct.size }
