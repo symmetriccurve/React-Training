@@ -6,26 +6,20 @@ import store from '../store'
 import { getProducts } from '../actions/productActions'
 
 class App extends Component {
-    constructor(){
-        super()
-        this.state  = {
-            productsFromComponentState: [],
-            cartCount: 0,
-            //cart: []
-        }
-    }
 
     componentDidMount(){
-       fetch('https://api.myjson.com/bins/11j4n3')
-       .then((response)=>{
-          return response.json()
-        })
-       .then((json)=>{
-           this.setState({
-               productsFromComponentState: json
-           })
-       })
-       .catch((error)=>{console.log(error)})
+       store.dispatch(getProducts())
+
+    //    fetch('https://api.myjson.com/bins/11j4n3')
+    //    .then((response)=>{
+    //       return response.json()
+    //     })
+    //    .then((json)=>{
+    //        this.setState({
+    //            productsFromComponentState: json
+    //        })
+    //    })
+    //    .catch((error)=>{console.log(error)})
 
     }
 
@@ -41,7 +35,7 @@ class App extends Component {
             <div>
                 <div style={{height:'100px',width:'100px',backgroundColor:'black'}} onClick={()=>{store.dispatch(userClick())}}/>
                 <Header cartCount = { this.props.cart.length }/>
-                <ProductContainer products={this.state.productsFromComponentState}/>
+                <ProductContainer />
             </div>
         )
     }

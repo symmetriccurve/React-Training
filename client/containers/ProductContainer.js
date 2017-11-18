@@ -5,13 +5,19 @@ import { addToCart , removeFromCart } from '../actions/cartActions'
 import store from '../store'
 
 class ProductContainer extends Component {
+
+    componentWillReceiveProps(newProps){
+        console.log("this Props",this.props)
+        console.log("new Props",newProps)
+    }
+
     render(){
         return(
             <div>
                 {
                     this.props.products.map((eachProduct,i)=>{
                         return <ProductCard 
-                                key = { eachProduct.productName } 
+                                key = { eachProduct.productName + i } 
                                 name = { eachProduct.productName } 
                                 price = { eachProduct.productPrice } 
                                 size = { eachProduct.size }
@@ -29,7 +35,7 @@ class ProductContainer extends Component {
 
 function mapStateToProps(state){
     return {
-        productss: state.products
+        products: state.productReducer.products
     }
 }
 

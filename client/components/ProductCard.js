@@ -35,7 +35,7 @@ class ProductCard extends Component {
     }
 
     render(){
-        console.log("I'm product Card and I render",this.props.name)
+        //console.log("I'm product Card and I render",this.props.name)
         return (
             <div style={s.a} className='main-container'>
                 <div style={s.b} className='content-container'>
