@@ -2,14 +2,16 @@ import React, { Component } from 'react';
 require('./App.css')
 
 import ProductCard from './ProductCard'
-
+import Header from './Header'
 class App extends Component {
 
     constructor(){ // 1 St
       super()
       this.state = {
-        products: []
+        products: [],
+        cartCount: 0
       }
+      //this.addToCartInApp = this.addToCartInApp.bind(this)
     }
 
     componentWillMount(){ //2nd
@@ -18,15 +20,24 @@ class App extends Component {
       // })
     }
 
+    addToCartInApp(){
+        console.log("Calling add to Cart In App")
+        this.setState({
+            cartCount: this.state.cartCount + 1
+        })
+    }
+
     render() { //3rd //5th
       return(
         <div>
+          <Header count={this.state.cartCount}/>
           {
             this.state.products.map((eachProduct,i)=>{
                 return <ProductCard key={i}
-                        name={eachProduct.productName}
+                        productName={eachProduct.productName}
                         productPrice={eachProduct.productPrice}
                         productColor={eachProduct.productColor}
+                        addToCartInApp = {()=>this.addToCartInApp()}
                         />
             })
           }
@@ -36,7 +47,7 @@ class App extends Component {
 
     componentDidMount(){
 
-      fetch('https://api.myjson.com/bins/sa1r5')
+      fetch('https://api.myjson.com/bins/kdoy5')
       .then(function(response){
         return response.json()
       })
