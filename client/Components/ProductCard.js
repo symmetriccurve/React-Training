@@ -22,7 +22,7 @@ class ProductCard extends Component{
           <div style={s.b} className='content-container'>
               <div style={s.c} className='name-container'>
                   <span style={s.d} className='product-name'>
-                      { this.state.isAddedToCart ? this.props.productName : '********' }
+                      { this.props.productName }
                   </span>
                   <div style={s.g} className='price-container'>
                       <span style={s.h} className='product-price'>
@@ -36,7 +36,7 @@ class ProductCard extends Component{
                   </div>
                    <div style={{marginTop:'10px',display:'flex',backgroundColor:this.state.isAddedToCart ? 'green': '#4FAFE9',borderRadius:'25px',height:'35%',width:'100%',alignItems:'center',justifyContent:'center'}} className='cart-button-container' onClick={()=>this.handleAddToCart()}>
                       <span style={s.f} className='add-to-cart'>
-                          { this.state.isAddedToCart ? "hide" : "Show" }
+                          { this.state.isAddedToCart ? "Remove" : "Add to Cart" }
                       </span>
                   </div>
               </div>

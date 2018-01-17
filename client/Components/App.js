@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 require('./App.css')
 
-import ProductCard from './ProductCard'
+import Products from './Products'
 import Header from './Header'
 class App extends Component {
 
@@ -31,16 +31,7 @@ class App extends Component {
       return(
         <div>
           <Header count={this.state.cartCount}/>
-          {
-            this.state.products.map((eachProduct,i)=>{
-                return <ProductCard key={i}
-                        productName={eachProduct.productName}
-                        productPrice={eachProduct.productPrice}
-                        productColor={eachProduct.productColor}
-                        addToCartInApp = {()=>this.addToCartInApp()}
-                        />
-            })
-          }
+          <Products products={this.state.products} addToCartInApp={()=>this.addToCartInApp()}/>
         </div>
       )
     }
@@ -61,6 +52,10 @@ class App extends Component {
       .catch((error) => {
         console.log(error)
       })
+    }
+
+    componentWillUnmount(){
+
     }
 
 }
@@ -112,6 +107,10 @@ render() {
   return <div/>
 
 }
+
+<App>
+
+</App>
 
 
 */
