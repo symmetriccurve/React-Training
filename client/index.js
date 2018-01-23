@@ -1,11 +1,14 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
-import App from 'Components/App';
+import App from 'containers/App';
 import store from './store'
+import { Provider } from 'react-redux'
 
-console.log("This is my State", store.getState())
+// console.log("This is my State", store.getState())
 
 ReactDOM.render(
-     <App />,
+    <Provider store={ store }>
+      <App/>
+    </Provider>,
   document.getElementById('root')
 );

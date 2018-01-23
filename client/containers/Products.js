@@ -1,5 +1,7 @@
 import React,{Component} from 'react'
-import ProductCard from './ProductCard'
+import ProductCard from '../Components/ProductCard'
+import store from '../store'
+
 class Products extends Component{
     render(){
         return(
@@ -10,7 +12,7 @@ class Products extends Component{
                           productName={eachProduct.productName}
                           productPrice={eachProduct.productPrice}
                           productColor={eachProduct.productColor}
-                          addToCartInApp = {()=>this.props.addToCartInApp()}
+                          addToCartInApp = {()=>store.dispatch({type:'userAddedItemToCart'})}
                           />
               })
             }
