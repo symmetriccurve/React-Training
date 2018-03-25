@@ -7,7 +7,7 @@ class ProductCard extends Component {
             isAddedToCart: false
         }
     }
-
+    //Adding to local Add to Cart
     localHandleAddToCart(productName){
         if(this.state.isAddedToCart){
             this.props.removeFromCart(productName)
@@ -58,8 +58,8 @@ class ProductCard extends Component {
                                 { this.state.isAddedToCart ? "Added to Cart" : "Add to Cart" }
                             </span>
                         </div>
-                    </div>    
-                </div>    
+                    </div>
+                </div>
             </div>
         )
     }
